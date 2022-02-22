@@ -17,7 +17,7 @@ class RockToken extends WireData implements Module, ConfigurableModule {
   public static function getModuleInfo() {
     return [
       'title' => 'RockToken',
-      'version' => '1.0.0',
+      'version' => '1.0.1',
       'summary' => 'Helper for token-based login',
       'autoload' => true,
       'singular' => true,

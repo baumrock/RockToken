@@ -70,7 +70,9 @@ class Token extends WireData {
   }
 
   public function __debugInfo() {
-    return $this->sleep();
+    return array_merge($this->sleep(), [
+      'url()' => $this->url(),
+    ]);
   }
 
 }
