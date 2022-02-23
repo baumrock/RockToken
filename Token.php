@@ -15,6 +15,7 @@ class Token extends WireData {
       ],
       'logins' => 1, // token can be used for 1 login
       'expire' => '15min', // time after that the login-link expires
+      'expireTS' => null, // for sort order
       'logout' => '60min', // logout if user is inactive for that time
     ]);
     $this->setArray($settings ?: []);
@@ -23,6 +24,15 @@ class Token extends WireData {
       $this->token = $rand->alphanumeric(0, $this->random);
     }
     $this->name = RockToken::prefix.$this->token;
+    $this->expireTS = strtotime($this->expire);
+  }
+
+  /**
+   * Return formatted expire datetime
+   * @return string
+   */
+  public function expire($format = "Y-m-d H:i:s") {
+    return date($format, $this->expireTS);
   }
 
   /**
