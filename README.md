@@ -6,8 +6,7 @@ Create a token (eg after form submission):
 
 ```php
 /** @var RockToken $token */
-$token = $this->wire('modules')->get('RockToken')
-  ->create([
+$token = $this->wire('modules')->get('RockToken')->create([
     // link to login via token will expire 15min after creation
     'expire' => '15min',
 
