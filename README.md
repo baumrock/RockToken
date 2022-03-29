@@ -1,14 +1,20 @@
 # RockToken
 
+## A message to Russian 🇷🇺 people
+
+If you currently live in Russia, please read [this message](https://github.com/Roave/SecurityAdvisories/blob/latest/ToRussianPeople.md).
+
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+
+---
+
 ## Quickstart
 
 Create a token (eg after form submission):
 
 ```php
 /** @var RockToken $token */
-$token = $this->wire('modules')
-  ->get('RockToken')
-  ->create([
+$token = $this->wire('modules')->get('RockToken')->create([
     // link to login via token will expire 15min after creation
     'expire' => '15min',
 
