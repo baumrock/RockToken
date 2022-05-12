@@ -37,12 +37,18 @@ class Token extends WireData {
 
   /**
    * Create clickable link for this token
+   *
+   * If the preview param is set to TRUE the link will contain ?preview=1
+   * This will show a confirmation page to the user and redirect it to the
+   * success page. This is an additional step to prevent mail client previews
+   * from unvalidating single-use-tokens!
+   *
    * @return string
    */
-  public function link($blank = true) {
+  public function link($blank = true, $preview = false) {
     $url = $this->url();
     $blank = $blank ? " target='_blank'" : "";
-    return "<a href='$url' $blank>$url</a>";
+    return "<a href='$url?preview=$preview' $blank>$url</a>";
   }
 
   /**

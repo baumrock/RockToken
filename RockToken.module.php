@@ -17,7 +17,7 @@ class RockToken extends WireData implements Module, ConfigurableModule {
   public static function getModuleInfo() {
     return [
       'title' => 'RockToken',
-      'version' => '1.0.1',
+      'version' => '1.0.2',
       'summary' => 'Helper for token-based login',
       'autoload' => true,
       'singular' => true,
@@ -148,9 +148,17 @@ class RockToken extends WireData implements Module, ConfigurableModule {
 
     $endpoint = $this->endpoint ?: self::endpoint;
     $this->wire->addHookAfter("/$endpoint/{token}", function($event) use($cb) {
+
       $session = $this->wire->session;
       $pages = $this->wire->pages;
       $token = $this->getToken($event->token);
+
+      if($this->wire->input->get('preview', 'int')) {
+        return $this->wire->files->render(__DIR__."/Preview.php", [
+          'token' => $token,
+          'url' => $token->url(),
+        ]);
+      }
 
       if($token AND $token->loginsLeft()) {
         // successful login
